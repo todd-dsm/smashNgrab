@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+#  PURPOSE:  Let's get the latest updates - but only if we need them.
+#            ------------------------------------------------------------------
+#   AUTHOR:  Todd E Thomas
+# MODIFIED:  2014/08/01
+
+
+###----------------------------------------------------------------------------
+### VARIABLES
+###----------------------------------------------------------------------------
+# if required environment variables not set already, something went wrong, exit
+: ${instLib?"required library directory not set in environment"}
+: ${sysPackageData?"required system file not set in environment"}
+
+pathFile="$sysPackageData"
+
+###----------------------------------------------------------------------------
+### FUNCTIONS
+###----------------------------------------------------------------------------
+source "$instLib/start.sh"
+source "$instLib/finish.sh"
+source "$instLib/get_stats.sh"
+source "$instLib/printfmsg.sh"
+
+
+###----------------------------------------------------------------------------
+### MAIN PROGRAM
+###----------------------------------------------------------------------------
+### What time is it?
+###---
+start
+printReq "Updating OS - if we need it."
+
+
+###---
+### Get File Stats
+###---
+getStats "$pathFile"
+
+
+###---
+### Update the OS
+###---
+if [[ "${fsoModTm%% *}" != "$dateHuman"  ]]; then
+    printInfo "Turns out we do, grabbing the latest updates. This might take a minute..."
+    if [[ "$myDistro" = 'Debian' ]]; then
+        apt-get update &> /dev/null
+    else
+        yum -y update &> /dev/null
+    fi
+else
+    printInfo "Nope, we're all good, moving on..."
+fi
+
+
+###---
+### fin~
+###---
+finish

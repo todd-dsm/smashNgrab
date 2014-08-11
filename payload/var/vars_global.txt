@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+#   PURPOSE: This file holds all global variables specific to the OS and
+#            automation. All variables are local till their not.
+#            ------------------------------------------------------------------
+#            Execute: source vars.txt
+#            ------------------------------------------------------------------
+#            ------------------------------------------------------------------
+#   AUTHOR:  Todd E Thomas
+#     DATE:  2014/08/01
+
+###---
+### Set history to use time format on output
+###---
+export HISTTIMEFORMAT="%c # "
+
+
+###---
+### Automatically mark variables and functions which are modified
+### or created for export to the environment of subsequent commands.
+###---
+set -a
+
+
+###---
+### Set up PATH to always include current working directory
+###---
+export PATH=$PATH:/usr/local$sysDirEtc:.
+
+
+################################################################################
+### Global environment variables used by various configuration scripts
+################################################################################
+export dateHuman="$(date '+%F')"
+export dateLog="$(date '+%Y%m%d')"
+export instDir="$myLoc/payload"
+export instLib="$instDir/lib"
+export instPuppet="$instDir/puppet"
+export puppetFiles="$instPuppet/files"
+export puppetMans="$instPuppet/manifests"
+export puppetMods="$instPuppet/modules"
+export instSrc="$instDir/src"
+export sysTmpLogs="$sysDirTmp/logs"
+export instVars="$instDir/var"
+export adminDir="$HOME/admin"
+export backupDir="$adminDir/backup"
+export logDir="$adminDir/logs"
+alias tarit='cd "$HOME"; rm -f puppet.tgz; tar czvf puppet.tgz config_linux/'
+alias untarit='tar xzvf puppet.tgz'
+alias pushit='scp ~/puppet.tgz thomas@power:/home/thomas/projects/puppet_interview/'
+alias pullit='scp thomas@power:/home/thomas/projects/puppet_interview/puppet.tgz $HOME/'
+alias commitit='tarit; pushit'
+alias libd='cd ~/config_linux/payload/lib'
+alias srcd='cd ~/config_linux/payload/src'
+
+### Network Stuff
+export hostArch="$(uname -m)"
+export hostName="$(hostname -s)"            			# Host Name only
+export hostFQDN="$(hostname -f)"		            	# Fully Qualified
+export hostDomain="$(echo "$hostFQDN" | cut -d'.' -f2)" # Domain Name
+export hostTLD="$(echo "$hostFQDN" | cut -d'.' -f3)"   	# The TLD
+
+export IPADDR="$(ip a | grep "eth0$" | cut -d" " -f6)"
+export IPADDR="${IPADDR%%/*}"
+
+export sysResolver="/etc/resolv.conf"
+dns1Resolver="$(grep nameserver $sysResolver)"

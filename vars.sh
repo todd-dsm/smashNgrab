@@ -1,0 +1,1 @@
+payload/var/vars_global.txt
