@@ -21,4 +21,4 @@ sudo su -
 /vagrant/config.sh | tee -i config_out.log
 ```
 
-If you like you can do a `set -x` in config.sh before staring to get all the raunchy details in the outupt.
+To get the extended club remix, add `set -x` at the top of `config.sh` to get all the raunchy stuff.
