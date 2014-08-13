@@ -10,9 +10,9 @@
 ###----------------------------------------------------------------------------
 # if required environment variables not set already, something went wrong, exit
 : ${instLib?"required library directory not set in environment"}
-: ${sysPackageData?"required system file not set in environment"}
+: ${sysPackageDir?"required system file not set in environment"}
 
-pathFile="$sysPackageData"
+pathFile="$sysPackageDir"
 
 ###----------------------------------------------------------------------------
 ### FUNCTIONS
@@ -43,10 +43,10 @@ getStats "$pathFile"
 ###---
 if [[ "${fsoModTm%% *}" != "$dateHuman"  ]]; then
     printInfo "Turns out we do, grabbing the latest updates. This might take a minute..."
-    if [[ "$myDistro" = 'Debian' ]]; then
-        apt-get update &> /dev/null
-    else
+    if [[ "$myDistro" = 'CentOS' ]]; then
         yum -y update &> /dev/null
+    else
+        apt-get update &> /dev/null
     fi
 else
     printInfo "Nope, we're all good, moving on..."

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 #------------------------------------------------------------------------------
-#  PURPOSE: Install EPEL
+#  PURPOSE: Install EPEL; the version changes per OS release. Update
+#           accordingly.
 #           -------------------------------------------------------------------
 #  AUTHORS: Todd E Thomas
 #     DATE: 2014/08/01
@@ -35,18 +36,35 @@ source "$instLib/get_stats.sh"
 ###---
 start
 
-
 ###---
 ### Install EPEL
 ###---
-printReq "Installing EPEL if it doesn't exist..."
-stat "$repoEPEL" 2>/dev/null
-if [[ $? -ne 0 ]]; then
-    curl -o "$sysDirTmp/$pkgEPEL" "http://mirror.pnl.gov/epel/6/i386/$pkgEPEL"
-    rpm -ivh "$sysDirTmp/$pkgEPEL"
+printReq "Installing EPEL if it's not already."
+if [[ "$myDistro" = 'CentOS' ]]; then
+    stat "$repoEPEL" &> /dev/null
+    if [[ "$?" -ne '0' ]]; then
+        printInfo "EPEL is not present; installing..."
+        curl -o "$sysDirTmp/$pkgEPEL" "http://mirror.pnl.gov/epel/6/i386/$pkgEPEL"
+        rpm -ivh "$sysDirTmp/$pkgEPEL"
+        if [[ "$?" -ne '0' ]]; then
+            printFStat "EPEL cannot be installed for some reason; exiting."
+            exit 1
+        else
+            printSStat "Success: Installed EPEL."
+        fi
+    else
+        printSStat "Success: EPEL alredy installed."
+    fi
+else
+    printInfo "This is Debian; we don't need it. Moving on..."
 fi
 
-printSStatus "Success: Installed EPEL."
+
+###---
+### Update yum db
+###---
+#yum check-update
+
 
 ###---
 ### fin~

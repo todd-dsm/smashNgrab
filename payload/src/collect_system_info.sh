@@ -32,8 +32,8 @@ start
 ###---
 ### Find the Bash version
 ###---
-printReq "Confirm the BASH_VERSION:"
-printInfo "We are using BASH_VERSION: $BASH_VERSION"
+printReq "Confirm the BASH version:"
+printInfo "We are using BASH version: $BASH_VERSION"
 
 ### Verify it's version 4.x
 if [[ "${BASH_VERSION%%.*}" != '4' ]]; then

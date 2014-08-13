@@ -1,11 +1,19 @@
 # install package
+if versioncmp($::puppetversion,'3.6.1') >= 0 {
+
+  $allow_virtual_packages = hiera('allow_virtual_packages',false)
+
+  Package {
+    allow_virtual => $allow_virtual_packages,
+  }
+}
 package { 'nginx':
   ensure  => installed,
 }
 
 # deploy index.html
 file {'homePage':
-  path    => '/usr/share/nginx/www/index.html',
+  path    => '/usr/share/nginx/html/index.html',
   ensure  => present,
   owner   => root,
   group   => root,

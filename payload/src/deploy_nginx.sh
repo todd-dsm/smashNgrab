@@ -32,23 +32,30 @@ source "$instLib/get_stats.sh"
 ###---
 start
 
-printReq "Puppet: Install nginx..."
+printReq "Puppet: Installing nginx..."
 
 ###---
 ### Install nginx
 ###---
-if [[ ! -d "$sysNginxDir" ]]; then
-    sudo puppet apply "$puppetMans/install_nginx.pp"
+progInstalled="$(type -P nginx)"
+
+if [[ "${progInstalled##*/}" != 'nginx' ]]; then
+    case "$myDistro" in
+        'CentOS')
+            sudo puppet apply "$puppetMans/install_nginx_centos.pp"
+            ;;
+        'Debian')
+            sudo puppet apply "$puppetMans/install_nginx_debian.pp"
+            ;;
+    esac
 else
-    printInfo "nginx is already installed; exiting."
-    exit 0
+    printInfo "nginx is already installed."
 fi
 
 
 ###---
 ### Message to User
 ###---
-printInfo ""
 printInfo ""
 printInfo ""
 
