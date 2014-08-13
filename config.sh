@@ -82,6 +82,9 @@ if [[ "$myDistro" = 'Debian' ]]; then
 else
     echo "  Importing CentOS Stuff..."
     source "$instVars/vars_centos.txt"
+    echo ""
+    echo ""
+    echo ""
 fi
 
 
@@ -141,9 +144,18 @@ if [ $? -ne 0 ]; then
 fi
 
 
-exit
+###---
+### Harden Samba
+###---
+"$instSrc/harden_samba.sh"
+if [ $? -ne 0 ]; then
+    infobreak $LINENO "$instSrc/harden_samba.sh did not exit successfully"
+    exit 1
+fi
+
 
 ###---
 ### fin~
 ###---
 finish
+exit 0

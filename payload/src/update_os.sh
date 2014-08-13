@@ -12,7 +12,6 @@
 : ${instLib?"required library directory not set in environment"}
 : ${sysPackageDir?"required system file not set in environment"}
 
-pathFile="$sysPackageDir"
 
 ###----------------------------------------------------------------------------
 ### FUNCTIONS
@@ -35,14 +34,14 @@ printReq "Updating OS - if we need it."
 ###---
 ### Get File Stats
 ###---
-getStats "$pathFile"
-
+getStats "$sysPackageDir"
 
 ###---
 ### Update the OS
 ###---
 if [[ "${fsoModTm%% *}" != "$dateHuman"  ]]; then
-    printInfo "Turns out we do, grabbing the latest updates. This might take a minute..."
+    printInfo "Turns out we do, grabbing the latest updates. This might take a
+    minute; it's a good time to grab some H2o..."
     if [[ "$myDistro" = 'CentOS' ]]; then
         yum -y update &> /dev/null
     else

@@ -75,6 +75,7 @@ export sysPam_sshd="$sysDirEtc/pam.d/sshd"
 export sysPam_sshd_welcome="$sysDirEtc/pam.d/sshd_welcome"
 export sysPam_SysAuth="$sysDirEtc/pam.d/system-auth-ac"
 export sysResolver="$sysDirEtc/resolv.conf"
+export sysSambaConfig="$sysDirEtc/samba/smb.conf"
 export sysServices="$sysDirEtc/services"
 export sysYumUpdates="$sysDirEtc/yum/yum-updatesd.conf"
 

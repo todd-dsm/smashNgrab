@@ -16,13 +16,14 @@
 ### FUNCTION
 ###----------------------------------------------------------------------------
 getStats()  {
-    stat "$pathFile" &> /dev/null
+    stat "$1"  &> /dev/null
     if [[ "$?" -ne '0' ]]; then
+        printInfo "What file?! There's no file!"
 	    return 1
     else
-	    fsoPerms="$(stat -c '%a' $pathFile 2>/dev/null)"
-        fsoOwner="$(stat -c '%U' $pathFile 2>/dev/null)"
-        fsoGroup="$(stat -c '%G' $pathFile 2>/dev/null)"
-        fsoModTm="$(stat -c '%y' $pathFile 2>/dev/null)"
+	    fsoPerms="$(stat -c '%a' $1 2>/dev/null)"
+        fsoOwner="$(stat -c '%U' $1 2>/dev/null)"
+        fsoGroup="$(stat -c '%G' $1 2>/dev/null)"
+        fsoModTm="$(stat -c '%y' $1 2>/dev/null)"
     fi
 }

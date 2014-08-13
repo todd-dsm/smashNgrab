@@ -1,0 +1,6 @@
+# Samba Parameters and Values to be injected into /etc/samba/smb.conf
+# Poulate this file with new lines prepended by 9-spaces
+	hosts allow = 127.
+	encrypt passwords = yes
+	smb passwd file = /etc/samba/smbpasswd
+	guest ok = no
