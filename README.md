@@ -15,8 +15,9 @@ These are more of a 'smash-and-grab' nature. A framework of scripts, for immedia
 ####Prerequisites
 * This has only been tested and verified on Linux and OS X.
   - In principal it should also work on Windows.
-* Install [Vagrant](http://www.vagrantup.com/downloads), if you don't already.
+* Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) as well.
 * Install [Git](http://git-scm.com/book/en/Getting-Started-Installing-Git) as well.
+* Install [Vagrant](http://www.vagrantup.com/downloads), if you don't already.
 
 To automatically:
 * Provision and boot an OS
@@ -31,6 +32,31 @@ vagrant ssh
 sudo su -
 /vagrant/config.sh | tee -i config_out.log
 ```
-Then, kick back and watch the show.
-
+Then, kick back and watch the show; the first time takes less than 10 minutes; subsequent runs about 4 minutes.
 To get the extended club remix, add `set -x` at the top of `config.sh` and you'll see all the raunchy stuff.
+
+**If you want to reset the test so you can show some co-workers:**
+```
+exit
+exit
+vagrant halt
+vagrant destroy
+```
+
+Then follow the first steps all over again.
+
+
+####Tear-down
+1. Uninstall the programs if they are not a part of your work day.
+2. Remove the ~/.vagrant.d directory
+3. That's it.
+
+
+###POST-GAME
+This is the simple version. A far greater method would be to integrate thus:
+1. Auto-config bare metal VMs.
+2. Install/config the OS (as demo'd here).
+3. Prep VMs for automated testing.
+4. Deply VMs to any services; EG: VMWare, VirtualBox, Amazon, Google, Rackspace, etc.
+
+All of this without defects. Let me know if I can help.

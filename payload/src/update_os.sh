@@ -36,13 +36,16 @@ printReq "Updating OS - if we need it."
 ###---
 getStats "$sysPackageDir"
 
+
 ###---
 ### Update the OS
 ###---
 if [[ "${fsoModTm%% *}" != "$dateHuman"  ]]; then
     printInfo "Turns out we do, grabbing the latest updates. This might take a minute..."
     if [[ "$myDistro" = 'CentOS' ]]; then
-        yum -y update &> /dev/null
+        #yum -y update &> /dev/null
+        yum clean-all
+        yum check-update
     else
         apt-get update &> /dev/null
     fi
