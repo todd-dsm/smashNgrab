@@ -54,6 +54,7 @@ Then follow the first steps all over again.
 
 ###POST-GAME
 This is the simple version. A far greater method would be to integrate thus:
+
 1. Auto-config bare metal VMs.
 2. Install/config the OS (as demo'd here).
 3. Prep VMs for automated testing.
