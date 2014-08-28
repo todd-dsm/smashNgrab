@@ -155,6 +155,22 @@ fi
 
 
 ###---
+### Parting Shot
+###---
+printReq "So, let's review; we have:"
+printSStat "Installed, configured, and hardened Samba."
+printSStat "Installed, deployed and configured nginx."
+printInfo ""
+printInfo ""
+
+printReq "Go ahead and try it out: http://127.0.0.1:8000/"
+
+printInfo ""
+printInfo ""
+printInfo ""
+
+
+###---
 ### fin~
 ###---
 finish
