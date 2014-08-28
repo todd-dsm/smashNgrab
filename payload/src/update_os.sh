@@ -40,8 +40,7 @@ getStats "$sysPackageDir"
 ### Update the OS
 ###---
 if [[ "${fsoModTm%% *}" != "$dateHuman"  ]]; then
-    printInfo "Turns out we do, grabbing the latest updates. This might take a
-    minute; it's a good time to grab some H2o..."
+    printInfo "Turns out we do, grabbing the latest updates. This might take a minute..."
     if [[ "$myDistro" = 'CentOS' ]]; then
         yum -y update &> /dev/null
     else
