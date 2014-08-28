@@ -47,9 +47,9 @@ Then follow the first steps all over again.
 
 
 ####Tear-down
-1. Uninstall the programs if they are not a part of your work day.
-2. Remove the ~/.vagrant.d directory
-3. That's it.
+* Uninstall the programs if they are not a part of your work day.
+* Remove the ~/.vagrant.d directory
+* That's it.
 
 
 ###POST-GAME
