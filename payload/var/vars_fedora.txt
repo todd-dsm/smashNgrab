@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+#   PURPOSE: This file holds all global variables specific to the OS and
+#            automation. All variables are local till their not.
+#            ------------------------------------------------------------------
+#            Execute: source vars.txt
+#            ------------------------------------------------------------------
+#            ------------------------------------------------------------------
+#   AUTHOR:  Todd E Thomas
+#     DATE:  2014/08/01
+
+###---
+### Set history to use time format on output
+###---
+export HISTTIMEFORMAT="%c # "
+
+
+###---
+### Automatically mark variables and functions which are modified
+### or created for export to the environment of subsequent commands.
+###---
+set -a
+
+
+###---
+### Set up PATH to always include current working directory
+###---
+export PATH=$PATH:/usr/local$sysDirEtc:.
+
+
+################################################################################
+### Global environment variables used by various configuration scripts
+################################################################################
+export instDir="$myLoc/payload"
+export instSrc="$instDir/src"
+export instLib="$instDir/lib"
+export sysTmpLogs="$sysDirTmp/logs"
+export adminDir="$HOME/admin"
+export backupDir="$adminDir/backup"
+export logDir="$adminDir/logs"
+alias tarit='cd "$HOME"; rm -f puppet.tgz; tar czvf puppet.tgz config_linux/'
+alias untarit='tar xzvf puppet.tgz'
+alias pushit='scp ~/puppet.tgz thomas@power:/home/thomas/projects/puppet_interview/'
+alias pullit='scp thomas@power:/home/thomas/projects/puppet_interview/puppet.tgz $HOME/'
+alias commitit='tarit; pushit'
+alias libd='cd ~/config_linux/payload/lib'
+alias srcd='cd ~/config_linux/payload/src'
+
+### Network Stuff
+export hostArch="$(uname -m)"
+export hostName="$(hostname -s)"            			# Host Name only
+export hostFQDN="$(hostname -f)"		            	# Fully Qualified
+export hostDomain="$(echo "$hostFQDN" | cut -d'.' -f2)" # Domain Name
+export hostTLD="$(echo "$hostFQDN" | cut -d'.' -f3)"   	# The TLD
+
+
+################################################################################
+### Definition for some system files
+### If not modified now, at some point in the future
+################################################################################
+export myBashRC="$HOME/.bashrc"
+export sysDirEtc='/etc'
+export sysDirTmp='/tmp'
+export sysDirVar='/var'
+export sysUsrShare='/usr/share'
+export sysGateway="$sysDirEtc/sysconfig/network"
+export sysIfaceDir="$sysDirEtc/sysconfig/network-scripts"
+export sysGrub='/boot/grub/grub.conf'
+export sysHosts="$sysDirEtc/hosts"
+export sysIPtables="$sysDirEtc/sysconfig/iptables"
+export sysLimits="$sysDirEtc/security/limits.conf"
+export syssLoginDefs="$sysDirEtc/login.defs"
+export sysLogWch='/usr/share/logwatch/default.conf/logwatch.conf'
+export sysNtpConf="$sysDirEtc/ntp.conf"
+export sysNginxHtml="$sysUsrShare/nginx"
+export sysPackageDir="$sysDirVar/lib/yum/history"
+export sysPam_sshd="$sysDirEtc/pam.d/sshd"
+export sysPam_sshd_welcome="$sysDirEtc/pam.d/sshd_welcome"
+export sysPam_SysAuth="$sysDirEtc/pam.d/system-auth-ac"
+export sysResolver="$sysDirEtc/resolv.conf"
+export sysSambaConfig="$sysDirEtc/samba/smb.conf"
+export sysServices="$sysDirEtc/services"
+export sysYumUpdates="$sysDirEtc/yum/yum-updatesd.conf"
+
+#source ${instDir_SCRIPTS}/prefs.txt

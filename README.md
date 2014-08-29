@@ -27,6 +27,8 @@ To automatically:
 ```
 git clone git@github.com:todd-dsm/smashNgrab.git
 cd smashNgrab
+sudo ./sudo_passwdless.sh
+sudo ./setup_env.sh
 vagrant up
 vagrant ssh
 sudo su -
