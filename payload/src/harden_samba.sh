@@ -38,7 +38,8 @@ displayConfig() {
 ###---
 start
 
-printReq "Harnening Samba..."
+printReq "Installing, configuring and harndening Samba..."
+
 
 ###---
 ### Ensure the program is installed
@@ -109,7 +110,7 @@ fi
 ###---
 ### Ensure correct permissions and ownership
 ###---
-### Insure permissions are correct on the new file
+### Ensure permissions are correct on the new file
 printInfo ""
 printInfo "Re-applying original permissions to the file."
 chmod "$fsoPerms" "$sysSambaConfig"

@@ -15,6 +15,7 @@
 : ${backupDir?"required backup directory not set in environment"}
 
 sysNginxDir="$sysDirEtc/nginx"
+sysNginxWeb="$sysNginxHtml/html"
 
 ###----------------------------------------------------------------------------
 ### FUNCTIONS
@@ -51,6 +52,13 @@ if [[ "${progInstalled##*/}" != 'nginx' ]]; then
 else
     printInfo "nginx is already installed."
 fi
+
+
+###---
+### New HTML Resume
+###---
+printInfo "Deploying HTML Resume..."
+tar xzvf "$varTargets/web_assets.tgz" -C "$sysNginxWeb/"  &> /dev/null
 
 
 ###---

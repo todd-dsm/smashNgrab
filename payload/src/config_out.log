@@ -1,0 +1,85 @@
+
+Hi, my name is config.sh. I'll be your installer today :-)
+We will be executing from /vagrant
+First, let's pull in the Global Vaiables...
+
+  Importing CentOS Stuff...
+
+
+
+###
+###
+###       2014-08-28 09:39:28 PM: Start /vagrant/config.sh script
+###
+###
+###
+###
+###       2014-08-28 09:39:28 PM: Start /vagrant/payload/src/harden_samba.sh script
+###
+###
+
+[1mInstalling, configuring and harndening Samba...(B[m
+[32m  Samba is already installed.(B[m
+
+  
+  
+  The Samba configuration file does not meet the specification.
+  Adding new parameters:
+  	hosts allow = 127.
+  	encrypt passwords = yes
+  	smb passwd file = /etc/samba/smbpasswd
+	guest ok = no
+[32m  	guest ok = no is already set in the configuration.(B[m
+
+  
+  Re-applying original permissions to the file.
+  Re-applying original user and group ownership to the file.
+  
+[32m  Samba is now HARD:(B[m
+
+[global]
+	workgroup = MYGROUP
+	server string = Samba Server Version %v
+	log file = /var/log/samba/log.%m
+	max log size = 50
+	security = user
+ 	smb passwd file = /etc/samba/smbpasswd
+ 	encrypt passwords = yes
+ 	hosts allow = 127.
+	passdb backend = tdbsam
+	load printers = yes
+	cups options = raw
+[homes]
+	comment = Home Directories
+	browseable = no
+	writable = yes
+[printers]
+	comment = All Printers
+	path = /var/spool/samba
+	browseable = no
+	guest ok = no
+	writable = no
+	printable = yes
+###
+###
+###       2014-08-28 09:39:28 PM: Finish /vagrant/payload/src/harden_samba.sh script
+###
+###
+
+[1mSo, let's review; we have:(B[m
+[32m  Installed, configured, and hardened Samba.(B[m
+
+[32m  Installed, deployed and configured nginx.(B[m
+
+  
+  
+
+[1mGo ahead and try it out: http://127.0.0.1:8000/(B[m
+  
+  
+  
+###
+###
+###       2014-08-28 09:39:28 PM: Finish /vagrant/config.sh script
+###
+###

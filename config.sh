@@ -117,11 +117,11 @@ fi
 ###---
 ### Update the OS - if it needs one
 ###---
-"$instSrc/update_os.sh"
-if [ $? -ne 0 ]; then
-   infobreak $LINENO "$instSrc/update_os.sh did not exit successfully"
-   exit 1
-fi
+#"$instSrc/update_os.sh"
+#if [ $? -ne 0 ]; then
+#   infobreak $LINENO "$instSrc/update_os.sh did not exit successfully"
+#   exit 1
+#fi
 
 
 ###---
@@ -160,6 +160,9 @@ fi
 printReq "So, let's review; we have:"
 printSStat "Installed, configured, and hardened Samba."
 printSStat "Installed, deployed and configured nginx."
+printSStat "And documented everything in a log so important details don't get lost:"
+printSStat "  less config_out.log"
+printInfo ""
 printInfo ""
 printInfo ""
 

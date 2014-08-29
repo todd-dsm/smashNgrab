@@ -18,7 +18,7 @@ file {'homePage':
   owner   => root,
   group   => root,
   mode    => 0644,
-  source  => '/vagrant/payload/puppet/files/index.html',
+  source  => '/vagrant/payload/var/targets/index.html',
 }
 
 # Turn the service on

@@ -60,6 +60,7 @@ export hostTLD="$(echo "$hostFQDN" | cut -d'.' -f3)"   	# The TLD
 export myBashRC="$HOME/.bashrc"
 export sysDirEtc='/etc'
 export sysDirTmp='/tmp'
+export sysUsrShare='/usr/share'
 export sysDirVar='/var'
 export sysGateway="$sysDirEtc/sysconfig/network"
 export sysIfaceDir="$sysDirEtc/sysconfig/network-scripts"
@@ -70,6 +71,7 @@ export sysLimits="$sysDirEtc/security/limits.conf"
 export sysLoginDefs="$sysDirEtc/login.defs"
 export sysLogWch='/usr/share/logwatch/default.conf/logwatch.conf'
 export sysNtpConf_="$sysDirEtc/ntp.conf"
+#export sysNginxHtml="$sysUsrShare/nginx"
 export sysPackageDir="$sysDirVar/cache/apt"
 export sysPam_sshd="$sysDirEtc/pam.d/sshd"
 export sysPam_sshd_welcome="$sysDirEtc/pam.d/sshd_welcome"
@@ -77,6 +79,7 @@ export sysPam_SysAuth="$sysDirEtc/pam.d/system-auth-ac"
 export sysResolver="$sysDirEtc/resolv.conf"
 export sysServices="$sysDirEtc/services"
 export sysYumUpdates="$sysDirEtc/yum/yum-updatesd.conf"
+
 
 
 ################################################################################
