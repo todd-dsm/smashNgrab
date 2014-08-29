@@ -84,45 +84,48 @@ if [[ -z "$progExist" ]]; then
     if [[ "$?" -ne '0' ]]; then
         printFStat "VirtualBox is not available; exiting."
         exit 1
-    else
-        printSStat "Success: VirtualBox installed."
     fi
+else
+    printSStat "Success: VirtualBox installed."
 fi
 
 
 ###---
 ### Tell VirtualBox where to fine the kernel headers
 ###---
-export KERN_DIR="/usr/src/kernels/$(uname -r)"
 cat >> "$myBashRC" << EOF
 export KERN_DIR="/usr/src/kernels/\$(uname -r)"
 EOF
+
+# Source it in
+source "$myBashRC"
 
 
 ###---
 ### Build kernel modules
 ###---
-sudo /etc/init.d/vboxdrv setup
+#sudo /etc/init.d/vboxdrv setup
+
 
 ###---
 ### Install Guest Extensions
 ###---
 printReq "VirtualBox Guests need the Extension Pack"
 
-printInfo "Pulling the package down..."
-#curl -o "sysDirTmp"
+# Let's go shopping
+vboxVersion="$(VBoxManage -v)"
+version=$(echo $vboxVersion | cut -d 'r' -f 1)
+revision=$(echo $vboxVersion | cut -d 'r' -f 2)
+file="Oracle_VM_VirtualBox_Extension_Pack-$version-$revision.vbox-extpack"
 
+# Go get that package:
+wget -P "$sysDirTmp/" "http://download.virtualbox.org/virtualbox/$version/$file"
+sudo VBoxManage extpack install "/tmp/$file" --replace
+printInfo ""
+printInfo ""
+printInfo ""
 
-
-###---
-### REQ
-###---
-
-
-###---
-### REQ
-###---
-
+printSStat "VirtualBox is ready to go."
 
 ###---
 ### fin~
