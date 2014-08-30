@@ -17,6 +17,7 @@ urlVbox='http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo'
 pkgVbox="epel-release-6-8.noarch.rpm"
 depTest='gcc'
 appTest='VBoxManage'
+vboxHome="$HOME/vbox"
 
 
 ###----------------------------------------------------------------------------
@@ -39,7 +40,7 @@ start
 ###---
 ### Install
 ###---
-printReq "Installing VirtualBox..."
+printReq "Install VirtualBox..."
 if [[ "$myDistro" = 'Fedora' ]]; then
     getStats "$repoVbox" &> /dev/null
     if [[ "$?" -ne '0' ]]; then
@@ -70,7 +71,7 @@ if [[ -z "$progExist" ]]; then
         exit 1
     fi
 else
-    printSStat "Success: Dependencies installed."
+    printSStat "Success: Dependencies already installed."
 fi
 
 
@@ -86,16 +87,17 @@ if [[ -z "$progExist" ]]; then
         exit 1
     fi
 else
-    printSStat "Success: VirtualBox installed."
+    printSStat "Success: VirtualBox already installed."
 fi
 
-
+set -x
 ###---
 ### Tell VirtualBox where to fine the kernel headers
 ###---
 cat >> "$myBashRC" << EOF
 export KERN_DIR="/usr/src/kernels/\$(uname -r)"
 EOF
+set +x
 
 # Source it in
 source "$myBashRC"
@@ -104,7 +106,7 @@ source "$myBashRC"
 ###---
 ### Build kernel modules
 ###---
-#sudo /etc/init.d/vboxdrv setup
+sudo /etc/init.d/vboxdrv setup
 
 
 ###---
@@ -119,13 +121,19 @@ revision=$(echo $vboxVersion | cut -d 'r' -f 2)
 file="Oracle_VM_VirtualBox_Extension_Pack-$version-$revision.vbox-extpack"
 
 # Go get that package:
-wget -P "$sysDirTmp/" "http://download.virtualbox.org/virtualbox/$version/$file"
+printInfo "Downloading and installing the extension pack..."
+wget -P "$sysDirTmp/" "http://download.virtualbox.org/virtualbox/$version/$file" &> /dev/null
 sudo VBoxManage extpack install "/tmp/$file" --replace
 printInfo ""
 printInfo ""
-printInfo ""
+
+# Set some preferences
+VBoxManage setproperty machinefolder "$vboxHome"
+
 
 printSStat "VirtualBox is ready to go."
+printInfo ""
+
 
 ###---
 ### fin~

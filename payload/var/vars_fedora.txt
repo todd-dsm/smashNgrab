@@ -58,6 +58,7 @@ export hostTLD="$(echo "$hostFQDN" | cut -d'.' -f3)"   	# The TLD
 ### If not modified now, at some point in the future
 ################################################################################
 export myBashRC="$HOME/.bashrc"
+export vboxHome="$HOME/vbox"
 export sysDirEtc='/etc'
 export sysDirTmp='/tmp'
 export sysDirVar='/var'

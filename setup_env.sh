@@ -105,53 +105,12 @@ if [ "$?" -ne '0' ]; then
 fi
 
 
-exit
 ###---
 ### Script
 ###---
-"$instSrc/script.sh"
+"$instSrc/install_vagrant.sh"
 if [ "$?" -ne '0' ]; then
-    infobreak $LINENO "$instSrc/script.sh did not exit successfully"
-    exit 1
-fi
-
-
-###---
-### Script
-###---
-"$instSrc/script.sh"
-if [ "$?" -ne '0' ]; then
-    infobreak $LINENO "$instSrc/script.sh did not exit successfully"
-    exit 1
-fi
-
-
-###---
-### Script
-###---
-"$instSrc/script.sh"
-if [ "$?" -ne '0' ]; then
-    infobreak $LINENO "$instSrc/script.sh did not exit successfully"
-    exit 1
-fi
-
-
-###---
-### Script
-###---
-"$instSrc/script.sh"
-if [ "$?" -ne '0' ]; then
-    infobreak $LINENO "$instSrc/script.sh did not exit successfully"
-    exit 1
-fi
-
-
-###---
-### Script
-###---
-"$instSrc/script.sh"
-if [ "$?" -ne '0' ]; then
-    infobreak $LINENO "$instSrc/script.sh did not exit successfully"
+    infobreak $LINENO "$instSrc/install_vagrant.sh did not exit successfully"
     exit 1
 fi
 
@@ -159,11 +118,11 @@ fi
 ###---
 ### Parting Shot
 ###---
-printReq "So, let's review; we have:"
-printSStat "Installed, configured, and hardened Samba."
-printSStat "Installed, deployed and configured nginx."
-printSStat "And documented everything in a log so important details don't get lost:"
-printSStat "  less config_out.log"
+printReq "REVIEW:"
+printSStat "Installed and configured VirtualBox."
+printSStat "Installed and configured Vagrant."
+printInfo ""
+printInfo ""
 printInfo ""
 
 
