@@ -66,7 +66,7 @@ fi
 printReq "Now we can install Vagrant..."
 #progExist="$(type -P "$appTest")"
 if [[ -z "$progExist" ]]; then
-    rpm -ivh "$sysDirTmp/$pkgNameVers"
+    sudo rpm -ivh "$sysDirTmp/$pkgNameVers"
     if [[ "$?" -ne '0' ]]; then
         printFStat "Vagrant install is erroring; exiting."
         exit 1

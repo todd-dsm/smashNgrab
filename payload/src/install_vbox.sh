@@ -66,7 +66,7 @@ fi
 printReq "First we need to install VirtualBox dependencies..."
 progExist="$(type -P "$depTest")"
 if [[ -z "$progExist" ]]; then
-    yum -y install dkms kernel-headers gcc
+    sudo yum -y install dkms kernel-headers gcc
     if [[ "$?" -ne '0' ]]; then
         printFStat "Dependencies are not available; exiting."
         exit 1
@@ -82,7 +82,7 @@ fi
 printReq "Now we can install VirtualBox..."
 progExist="$(type -P "$appTest")"
 if [[ -z "$progExist" ]]; then
-    yum -y install VirtualBox-4.3
+    sudo yum -y install VirtualBox-4.3
     ###---
     ### Build kernel modules
     ###---
