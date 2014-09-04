@@ -13,6 +13,8 @@ These are a couple of kick-off scripts; samples of my real work from my last emp
 These are more of a 'smash-and-grab' nature. A framework of scripts, for immediate action, that were just laying around the house. A Vagrant file was later added to round out the concept.
 
 ####Prerequisites
+Phase 1:
+If you're not already using these programs, follow the recipe from the email, else skip this part.
 * This has only been tested and verified on Linux and OS X.
   - In principal it should also work on Windows.
 * Install [Git](http://git-scm.com/book/en/Getting-Started-Installing-Git) as well.
@@ -20,10 +22,13 @@ These are more of a 'smash-and-grab' nature. A framework of scripts, for immedia
 * Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) as well.
 * Install [Vagrant](http://www.vagrantup.com/downloads), if you don't already.
   - VirtualBox and Vagrant are installed with the `setup_env.sh` script below.
+
+
 To automatically:
 * Deploy and secure some apps
 * In just a few minutes, follow the emailed steps and continue below:
 
+Phase 2:
 ```
 git clone https://github.com/todd-dsm/smashNgrab.git
 cd smashNgrab
