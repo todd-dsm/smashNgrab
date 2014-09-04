@@ -15,11 +15,11 @@ These are more of a 'smash-and-grab' nature. A framework of scripts, for immedia
 ####Prerequisites
 * This has only been tested and verified on Linux and OS X.
   - In principal it should also work on Windows.
-* Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) as well.
 * Install [Git](http://git-scm.com/book/en/Getting-Started-Installing-Git) as well.
   - To install: `sudo yum -y install git`
+* Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) as well.
 * Install [Vagrant](http://www.vagrantup.com/downloads), if you don't already.
-
+  - VirtualBox and Vagrant are installed with the `setup_env.sh` script below.
 To automatically:
 * Deploy and secure some apps
 * In just a few minutes, follow the emailed steps and continue below:
