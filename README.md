@@ -7,7 +7,7 @@ PURPOSE: demonstrate some basic deployment tasks
 2. Deliverables (all else)
 
 ##Reference
-These are 2 scripts that kick-off rather extensive programs; they are samples of my real work from my last employer. It was started in BASH (over 10k LOC) which was later ported to Python (over 12k LOC) when reporting became a requirement mid-stream. I'm fluent in BASH, this part took a few months; as you can see the Python version of this script is much more intense. The constraint was Python version 2.4; as a result, it was written to be independant of any version. I had to work for every bit of the code; this, and subsequent porting, took a year to reproduce.
+These scripts are 2 different versions of the same program, one in BASH and the other in Python; they kick-off rather extensive programs. They are samples of my real work from my last employer. It was started in BASH (over 10k LOC) which was later ported to Python (over 12k LOC) when reporting became a requirement mid-stream. I'm fluent in BASH, this part took a few months; as you can see the Python version of this script is much more intense. The constraint was Python version 2.4; as a result, it was written to be independant of any version. I had to work for every bit of the code; this, and subsequent porting, took a year to reproduce.
 
 ##Deliverables
 These are more of a 'smash-and-grab' nature. A framework of scripts, for immediate action, that were just laying around the house. A Vagrant file was later added to round out the concept.
@@ -15,9 +15,9 @@ These are more of a 'smash-and-grab' nature. A framework of scripts, for immedia
 ####Prerequisites
 * This has only been tested and verified on Linux and OS X.
   - In principal it should also work on Windows.
-* Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) as well.
-* Install [Git](http://git-scm.com/book/en/Getting-Started-Installing-Git) as well.
-* Install [Vagrant](http://www.vagrantup.com/downloads), if you don't already.
+* Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
+* Install [Git](http://git-scm.com/book/en/Getting-Started-Installing-Git).
+* Install [Vagrant](http://www.vagrantup.com/downloads).
 
 To automatically:
 * Provision and boot an OS
