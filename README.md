@@ -29,6 +29,10 @@ git clone git@github.com:todd-dsm/smashNgrab.git
 cd smashNgrab
 sudo ./sudo_passwdless.sh
 sudo ./setup_env.sh
+```
+
+If VirtualBox, Vagrant, Git, and sudo are already setup:
+```
 vagrant up
 vagrant ssh
 sudo su -
