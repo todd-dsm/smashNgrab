@@ -24,6 +24,7 @@ To automatically:
 * Deploy and secure some apps
 * In just a few minutes, follow these steps:
 
+If you are on Windows, you will have to build a VM to see the magic; don't forget to make your user an adminduring install. Afterwards, login through the termial (Putty, etc) then:
 ```
 git clone git@github.com:todd-dsm/smashNgrab.git
 cd smashNgrab
@@ -31,15 +32,14 @@ sudo ./sudo_passwdless.sh
 sudo ./setup_env.sh
 ```
 
-If VirtualBox, Vagrant, Git, and sudo are already setup:
+If VirtualBox, Vagrant, Git, and sudo are already setup then just use these steps:
 ```
 vagrant up
 vagrant ssh
 sudo su -
 /vagrant/config.sh | tee -i config_out.log
 ```
-Then, kick back and watch the show; the first time takes less than 10 minutes; subsequent runs about 4 minutes.
-To get the extended club remix, add `set -x` at the top of `config.sh` and you'll see all the raunchy stuff.
+Then, kick back and watch the show; the first time takes less than 10 minutes; subsequent runs about 4 minutes. To get the extended club remix, add `set -x` at the top of `config.sh` and you'll see all the raunchy stuff.
 
 **If you want to reset the test so you can show some co-workers:**
 ```
@@ -49,7 +49,7 @@ vagrant halt
 vagrant destroy
 ```
 
-Then follow the first steps all over again.
+Then follow from the 'vagrant up' step all over again.
 
 
 ####Tear-down
