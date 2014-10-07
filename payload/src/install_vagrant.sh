@@ -17,7 +17,7 @@ pkgDlURL='https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3_x86_64.rpm'
 pkgNameVers="${pkgDlURL##*/}"
 #depTest='gcc'
 appTest='vagrant'
-vagrantHome="$HOME/vbox/vagrant"
+vagrantHome="$vmHome/vagrant"
 
 
 ###----------------------------------------------------------------------------
@@ -66,7 +66,7 @@ fi
 printReq "Now we can install Vagrant..."
 #progExist="$(type -P "$appTest")"
 if [[ -z "$progExist" ]]; then
-    rpm -ivh "$sysDirTmp/$pkgNameVers"
+    sudo rpm -ivh "$sysDirTmp/$pkgNameVers"
     if [[ "$?" -ne '0' ]]; then
         printFStat "Vagrant install is erroring; exiting."
         exit 1
@@ -77,18 +77,20 @@ else
     printSStat "Success: Vagrant was already installed."
 fi
 
-set -x
+
 ###---
 ### Define Vagrant's home
 ###---
+grep 'VAGRANT_HOME' "$myBashRC"
+if [[ "$?" -ne '0' ]]; then
+    printInfo "Telling VirtualBox where the kernel headers are located..."
 cat >> "$myBashRC" << EOF
-export VAGRANT_HOME="\$HOME/vbox/vagrant"
+export VAGRANT_HOME="\$HOME/vms/vagrant"
 EOF
-set +x
-
-# Source it in
-source "$myBashRC"
-
+    source "$myBashRC"
+else
+    printSStat "Vagrant knows where its home is."
+fi
 
 ###---
 ### fin~

@@ -17,7 +17,7 @@ urlVbox='http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo'
 pkgVbox="epel-release-6-8.noarch.rpm"
 depTest='gcc'
 appTest='VBoxManage'
-vboxHome="$HOME/vbox"
+vboxHome="$vmHome/vbox"
 
 
 ###----------------------------------------------------------------------------
@@ -46,8 +46,9 @@ if [[ "$myDistro" = 'Fedora' ]]; then
     if [[ "$?" -ne '0' ]]; then
         printInfo "The VirtualBox repo is not present; pulling it down..."
         printInfo "Importing key..."
-        rpm --import http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc
-        curl -o "$repoVbox" "$urlVbox"
+        sudo rpm --import http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc
+        sudo curl -o "$repoVbox" "$urlVbox"
+        #echo "curl -o $repoVbox $urlVbox"
         getStats "$repoVbox"
         if [[ "$?" -ne '0' ]]; then
             printFStat "VirtualBox cannot be installed for some reason; exiting."
@@ -63,16 +64,8 @@ fi
 ### Install Dependencies
 ###---
 printReq "First we need to install VirtualBox dependencies..."
-progExist="$(type -P "$depTest")"
-if [[ -z "$progExist" ]]; then
-    yum -y install dkms kernel-headers gcc
-    if [[ "$?" -ne '0' ]]; then
-        printFStat "Dependencies are not available; exiting."
-        exit 1
-    fi
-else
-    printSStat "Success: Dependencies already installed."
-fi
+sudo yum -y install dkms kernel-headers gcc
+printSStat "Success: Dependencies already installed."
 
 
 ###---
@@ -81,7 +74,26 @@ fi
 printReq "Now we can install VirtualBox..."
 progExist="$(type -P "$appTest")"
 if [[ -z "$progExist" ]]; then
-    yum -y install VirtualBox-4.3
+    sudo yum -y install VirtualBox-4.3
+    ###---
+    ### Build kernel modules
+    ###---
+    sudo /etc/init.d/vboxdrv setup
+    ###---
+    ### Install Guest Extensions
+    ###---
+    printReq "VirtualBox Guests need the Extension Pack"
+    ### Let's go shopping
+    vboxVersion="$(VBoxManage -v)"
+    version=$(echo $vboxVersion | cut -d 'r' -f 1)
+    revision=$(echo $vboxVersion | cut -d 'r' -f 2)
+    file="Oracle_VM_VirtualBox_Extension_Pack-$version-$revision.vbox-extpack"
+    ### Go get that package:
+    printInfo "Downloading and installing the extension pack..."
+    wget -P "$sysDirTmp/" "http://download.virtualbox.org/virtualbox/$version/$file" &> /dev/null
+    sudo VBoxManage extpack install "/tmp/$file" --replace
+    printInfo ""
+    printInfo ""
     if [[ "$?" -ne '0' ]]; then
         printFStat "VirtualBox is not available; exiting."
         exit 1
@@ -90,48 +102,30 @@ else
     printSStat "Success: VirtualBox already installed."
 fi
 
-set -x
+
 ###---
 ### Tell VirtualBox where to fine the kernel headers
 ###---
+grep 'KERN_DIR' "$myBashRC"
+if [[ "$?" -ne '0' ]]; then
+    printInfo "Telling VirtualBox where the kernel headers are located..."
 cat >> "$myBashRC" << EOF
 export KERN_DIR="/usr/src/kernels/\$(uname -r)"
 EOF
-set +x
-
-# Source it in
-source "$myBashRC"
-
-
-###---
-### Build kernel modules
-###---
-sudo /etc/init.d/vboxdrv setup
+    source "$myBashRC"
+else
+    printSStat "VirtualBox knows where the kernel headers are."
+fi
 
 
 ###---
-### Install Guest Extensions
+### Set some preferences
 ###---
-printReq "VirtualBox Guests need the Extension Pack"
-
-# Let's go shopping
-vboxVersion="$(VBoxManage -v)"
-version=$(echo $vboxVersion | cut -d 'r' -f 1)
-revision=$(echo $vboxVersion | cut -d 'r' -f 2)
-file="Oracle_VM_VirtualBox_Extension_Pack-$version-$revision.vbox-extpack"
-
-# Go get that package:
-printInfo "Downloading and installing the extension pack..."
-wget -P "$sysDirTmp/" "http://download.virtualbox.org/virtualbox/$version/$file" &> /dev/null
-sudo VBoxManage extpack install "/tmp/$file" --replace
-printInfo ""
-printInfo ""
-
-# Set some preferences
 VBoxManage setproperty machinefolder "$vboxHome"
 
 
 printSStat "VirtualBox is ready to go."
+printInfo ""
 printInfo ""
 
 
