@@ -13,29 +13,23 @@ These are 2 scripts that kick-off rather extensive programs; they are samples of
 These are more of a 'smash-and-grab' nature. A framework of scripts, for immediate action, that were just laying around the house. A Vagrant file was later added to round out the concept.
 
 ####Prerequisites
-Phase 1:
-If you're not already using these programs, follow the recipe from the email, else skip this part.
 * This has only been tested and verified on Linux and OS X.
   - In principal it should also work on Windows.
-* Install [Git](http://git-scm.com/book/en/Getting-Started-Installing-Git) as well.
-  - To install: `sudo yum -y install git`
 * Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads) as well.
+* Install [Git](http://git-scm.com/book/en/Getting-Started-Installing-Git) as well.
 * Install [Vagrant](http://www.vagrantup.com/downloads), if you don't already.
-  - VirtualBox and Vagrant are installed with the `setup_env.sh` script below.
-
 
 To automatically:
+* Provision and boot an OS
 * Deploy and secure some apps
-* In just a few minutes, follow the emailed steps and continue below:
+* In just a few minutes, follow these steps:
 
-Phase 2:
 ```
-git clone https://github.com/todd-dsm/smashNgrab.git
+git clone git@github.com:todd-dsm/smashNgrab.git
 cd smashNgrab
 sudo ./sudo_passwdless.sh
 sudo ./setup_env.sh
-ls -l
-vagrant up    (approx 7 minutes)
+vagrant up
 vagrant ssh
 sudo su -
 /vagrant/config.sh | tee -i config_out.log
