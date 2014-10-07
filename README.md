@@ -24,7 +24,7 @@ To automatically:
 * Deploy and secure some apps
 * In just a few minutes, follow these steps:
 
-If you are on Windows, you will have to build a VM to see the magic; don't forget to make your user an adminduring install. Afterwards, login through the termial (Putty, etc) then:
+If you are on Windows, you will have to build a Linux VM to see the magic; don't forget to make your user an admin during install. Afterwards, login through the termial (Putty, etc) then:
 ```
 git clone git@github.com:todd-dsm/smashNgrab.git
 cd smashNgrab
