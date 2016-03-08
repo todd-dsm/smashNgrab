@@ -976,7 +976,7 @@ webpageHeader = '''<!DOCTYPE html>
 
     <link rel="stylesheet" media="screen" href="%s/hardening.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Helen Groves">
+    <meta name="author" content="Todd E Thomas">
     <meta name="description" content="Teradata security hardening.">
     <!--[if lt IE 9]>
     <script src="script/html5shiv.js"></script>
